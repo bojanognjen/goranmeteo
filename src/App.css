@@ -1,0 +1,8 @@
+.followingDays {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.day {
+    border: 1px dashed darkblue;
+}

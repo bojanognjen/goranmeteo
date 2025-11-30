@@ -1,4 +1,61 @@
+import "./App.css";
+import Clock24 from "./Clock";
+import Day from "./Day";
+import { useState } from "react";
+
 function App() {
+
+  const [time, setTime] = useState(new Date());
+
+  let today = time.getDay();
+  if (today == 0) today = 7;
+  const daysInWeek = ["Ponedeljak", "Utorak", "Srijeda", "Cetvrtak", "Petak", "Subota", "Nedelja"];
+  const months = ["januar", "februar", "mart", "april", "maj", "jun", "jul", "avgust", "septembar", "oktobar", "novembar", "decembar"];
+  const weekDayName = daysInWeek[today - 1];
+  let monthName = months[time.getMonth()];
+  let date = time.getDate();
+  let hours = String(time.getHours())
+  let minutes = String(time.getMinutes());
+
+
+
+  async function fetchWeather(lat, lon) {
+  try {
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=44.73&longitude=18.08&daily=temperature_2m_max,temperature_2m_min&hourly=temperature_2m,rain,cloud_cover_mid,cloud_cover,snowfall&current=temperature_2m,is_day,rain,snowfall,cloud_cover&timezone=Europe%2FBerlin`;
+
+    // Make the request
+    const response = await fetch(url);
+
+    // Check if the response is OK (status 200–299)
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    // Parse JSON data
+    const data = await response.json();
+
+    // Return or use the data
+    console.log(data);
+    return data;
+  } catch (error) {
+    // Catch network errors or JSON parsing errors
+    console.error("Error fetching weather data:", error);
+    return null; // or handle error in a way your app needs
+  }
+}
+
+const latitude = 44.73;
+const longitude = 18.08;
+
+
+useEffect(()=> {
+ async function getWeather() {
+      const data = await fetchWeather(44.73, 18.08);
+      console.log(data);
+    }
+    getWeather();
+}, [])
+
   return (
     <main>
       <h1 className="title">GoranMeteo</h1>
@@ -6,9 +63,10 @@ function App() {
       <div className="heading">
         <div className="location">
         <h2 className="locationTitle">Doboj</h2>
-        <img src="#" alt="Termometer" />
+        <img src="#" alt="Thermometer" />
       </div>
-      <p className="time">Petak, November 28, 1:18 AM</p>
+      <p className="time">{weekDayName}, {date}. {monthName}, {hours}:{minutes}h</p>
+      <Clock24 setTime={setTime}/>
       </div>
 
       <div className="todayForecast">
@@ -20,41 +78,13 @@ function App() {
       </div>
 
       <div className="followingDays">
-        <div className="day">
-          <span className="dayOfWeek">Pon</span>
-          <img src="" alt="IconForecast" />
-          <span>25/15</span>
-        </div>
-        <div className="day">
-          <span className="dayOfWeek">Uto</span>
-          <img src="" alt="IconForecast" />
-          <span>25/15</span>
-        </div>
-        <div className="day">
-          <span className="dayOfWeek">Sri</span>
-          <img src="" alt="IconForecast" />
-          <span>25/15</span>
-        </div>
-        <div className="day">
-          <span className="dayOfWeek">Cet</span>
-          <img src="" alt="IconForecast" />
-          <span>25/15</span>
-        </div>
-        <div className="day">
-          <span className="dayOfWeek">Pet</span>
-          <img src="" alt="IconForecast" />
-          <span>25/15</span>
-        </div>
-        <div className="day">
-          <span className="dayOfWeek">Sub</span>
-          <img src="" alt="IconForecast" />
-          <span>25/15</span>
-        </div>
-        <div className="day">
-          <span className="dayOfWeek">Ned</span>
-          <img src="" alt="IconForecast" />
-          <span>25/15</span>
-        </div>
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
+        <Day />
       </div>
     </main>
   );
