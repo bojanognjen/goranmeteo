@@ -1,9 +1,9 @@
-export default function Day () {
+export default function Day ({day, maxTemp, minTemp, unit}) {
     return (
         <div className="day">
-          <span className="dayOfWeek">Pon</span>
+          <span className="dayOfWeek">{day}</span>
           <img src="#" alt="IconForecast" />
-          <span>25/15</span>
+          <span>{maxTemp}{unit}/{minTemp}{unit}</span>
         </div>
     )
 }
