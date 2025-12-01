@@ -87,27 +87,19 @@ function App() {
   let rotatedWeek = [...daysInWeek.slice(today), ...daysInWeek.slice(0, today - 1)];
   let maxTemps = weatherData?.daily?.temperature_2m_max;
   let minTemps = weatherData?.daily?.temperature_2m_min;
+  let weatherCodes = weatherData?.daily?.weather_code;
   let units = weatherData?.daily_units?.temperature_2m_max;
 
   function getWeatherDescription(code) {
-    switch (code) {
-      case code == 3:
-        return "Oblacno"
-      case code < 40:
-        return `Nedefinisano ${code}` 
-      case code >= 40 && code <= 49:
-        return "Maglovito"
-      case code >= 50 && code <= 59:
-        return "Sitna kisa rominja"
-      case code >=60 && code <= 69:
-        return "Kisa";
-      case code >=70 && code <= 79:
-        return "Snijeg";
-      case code >= 80 && code <= 99:
-        return "Grmljavina"
+      if (code == 3) return "Oblacno"
+      if (code < 40) return `Nedefinisano ${code}` 
+      if (code >= 40 && code <= 49) return "Maglovito"
+      if (code >= 50 && code <= 59) return "Sitna kisa rominja"
+      if (code >=60 && code <= 69) return "Kisa";
+      if (code >=70 && code <= 79)return "Snijeg";
+      if (code >= 80 && code <= 99) return "Grmljavina"
 
-      default: return "Vedro"
-    }
+      else return "Vedro"
 }
 
   return (
@@ -137,7 +129,7 @@ function App() {
 
       <div className="followingDays">
         {rotatedWeek.map((day, index)=> {
-          if (weatherData) return <Day key={index} day={day} maxTemp={maxTemps[index + 1]} minTemp={minTemps[index + 1]} unit={units}/>
+          if (weatherData) return <Day key={index} day={day} wethCode={getWeatherDescription(weatherCodes[index + 1])} maxTemp={maxTemps[index + 1]} minTemp={minTemps[index + 1]} unit={units}/>
         })}
       </div>
     </main>
