@@ -3,6 +3,7 @@ import Clock24 from "./Clock";
 import Day from "./Day";
 import { useEffect, useState } from "react";
 import Current from "./Current";
+import { wmoCodes } from "../wmo";
 
 function App() {
   const [time, setTime] = useState(new Date());
@@ -91,15 +92,8 @@ function App() {
   let units = weatherData?.daily_units?.temperature_2m_max;
 
   function getWeatherDescription(code) {
-      if (code == 3) return "Oblacno"
-      if (code < 40) return `Nedefinisano ${code}` 
-      if (code >= 40 && code <= 49) return "Maglovito"
-      if (code >= 50 && code <= 59) return "Sitna kisa rominja"
-      if (code >=60 && code <= 69) return "Kisa";
-      if (code >=70 && code <= 79)return "Snijeg";
-      if (code >= 80 && code <= 99) return "Grmljavina"
-
-      else return "Vedro"
+    let descriptionSr = wmoCodes[code].sr || `${code} nepoznato`;
+    return descriptionSr;
 }
 
   return (

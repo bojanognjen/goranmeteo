@@ -1,3 +1,5 @@
+import WeatherIcon from "./WeatherIcon";
+
 export default function Current( { currentTemperature, unit, cloudCover, otherParameters}) {
     return(
         <div className="degree">
@@ -7,7 +9,7 @@ export default function Current( { currentTemperature, unit, cloudCover, otherPa
                 {otherParameters?.rain ? "PADA KISA" : "nema kise"}, 
                 {otherParameters?.snowfall ? "PADA SNIJEG" : "nema snijega"} 
           </span>
-          <img src="#" alt="Slika oblaka" />
+          <WeatherIcon code={}/>
         </div>
     )
 }
