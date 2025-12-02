@@ -1,9 +1,10 @@
-export default function Day ({day, wethCode, maxTemp, minTemp, unit}) {
+import WeatherIcon from "./WeatherIcon";
+
+export default function Day ({day, condition, maxTemp, minTemp, unit}) {
     return (
         <div className="day">
           <span className="dayOfWeek">{day}</span>
-          <img src="#" alt="IconForecast" />
-          <p>{wethCode}</p>
+          <WeatherIcon code={condition}/>
           <span>{maxTemp}{unit}/{minTemp}{unit}</span>
         </div>
     )

@@ -3,7 +3,6 @@ import Clock24 from "./Clock";
 import Day from "./Day";
 import { useEffect, useState } from "react";
 import Current from "./Current";
-import { wmoCodes } from "../wmo";
 
 function App() {
   const [time, setTime] = useState(new Date());
@@ -14,7 +13,7 @@ function App() {
     "Ponedeljak",
     "Utorak",
     "Srijeda",
-    "Cetvrtak",
+    "Četvrtak",
     "Petak",
     "Subota",
     "Nedelja",
@@ -47,7 +46,7 @@ function App() {
   useEffect(() => {
     async function fetchWeather(lat, lon) {
       try {
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=44.73&longitude=18.08&daily=temperature_2m_max,temperature_2m_min,weather_code&hourly=temperature_2m,rain,cloud_cover_mid,cloud_cover,snowfall&current=temperature_2m,is_day,rain,snowfall,cloud_cover&timezone=Europe%2FBerlin`;
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=44.73&longitude=18.08&daily=temperature_2m_max,temperature_2m_min,weather_code&hourly=temperature_2m,rain,cloud_cover_mid,cloud_cover,snowfall&current=temperature_2m,is_day,rain,snowfall,cloud_cover,weather_code&timezone=Europe%2FBerlin`;
 
         // Make the request
         const response = await fetch(url);
@@ -79,22 +78,13 @@ function App() {
   let temperature = Math.round(weatherData?.current?.temperature_2m);
   let tempUnit = weatherData?.current_units?.temperature_2m;
 
-  const clouds = ["Vedro", "Umjereno oblacno", "Totalno naoblacenje"];
-  const cloud = weatherData?.current?.cloud_cover ?? 0;
-
-  const cloudValue = cloud > 74 ? 2 : cloud > 24 ? 1 : 0;
-  let otherData = weatherData?.current;
+  let currentCondition = weatherData?.current.weather_code;
 
   let rotatedWeek = [...daysInWeek.slice(today), ...daysInWeek.slice(0, today - 1)];
   let maxTemps = weatherData?.daily?.temperature_2m_max;
   let minTemps = weatherData?.daily?.temperature_2m_min;
   let weatherCodes = weatherData?.daily?.weather_code;
   let units = weatherData?.daily_units?.temperature_2m_max;
-
-  function getWeatherDescription(code) {
-    let descriptionSr = wmoCodes[code].sr || `${code} nepoznato`;
-    return descriptionSr;
-}
 
   return (
     <main>
@@ -103,7 +93,7 @@ function App() {
       <div className="heading">
         <div className="location">
           <h2 className="locationTitle">Doboj</h2>
-          <img src="#" alt="Thermometer" />
+          <img className="icon" src="src/assets/icons/thermometer.svg" alt="Thermometer" />
         </div>
         <p className="time">
           {weekDayName}, {date}. {monthName}, {hours}:{minutes}h
@@ -115,15 +105,14 @@ function App() {
         <Current
           currentTemperature={temperature}
           unit={tempUnit}
-          cloudCover={clouds[cloudValue]}
-          otherParameters={otherData}
+          condition={currentCondition}
         />
         <span className="weatherToday"></span>
       </div>
 
       <div className="followingDays">
         {rotatedWeek.map((day, index)=> {
-          if (weatherData) return <Day key={index} day={day} wethCode={getWeatherDescription(weatherCodes[index + 1])} maxTemp={maxTemps[index + 1]} minTemp={minTemps[index + 1]} unit={units}/>
+          if (weatherData) return <Day key={index} day={day} condition={weatherCodes[index + 1]} maxTemp={maxTemps[index + 1]} minTemp={minTemps[index + 1]} unit={units}/>
         })}
       </div>
     </main>
