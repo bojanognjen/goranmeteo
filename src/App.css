@@ -1,5 +1,5 @@
 main {
-    background-color: darkslateblue;
+    background:linear-gradient(to bottom, hsl(233deg 35% 31%), hsl(225deg 92% 9%));
     color: #fff;
 }
 
