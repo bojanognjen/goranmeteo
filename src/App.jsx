@@ -3,6 +3,9 @@ import Clock24 from "./Clock";
 import Day from "./Day";
 import { useEffect, useState } from "react";
 import Current from "./Current";
+import logo from "./assets/icons/partly-cloudy-day.svg";
+import thermometer from "./assets/icons/thermometer.svg";
+import refresh from "./assets/icons/refresh.svg";
 
 function App() {
   const [time, setTime] = useState(new Date());
@@ -88,7 +91,7 @@ function App() {
         <h1>GoranMeteo</h1>
         <img
           className="logo"
-          src={`${import.meta.env.BASE_URL}icons/partly-cloudy-day.svg`}
+          src={logo}
           alt="Main logo"
         />
       </div>
@@ -104,10 +107,10 @@ function App() {
         <div className="upper-icons">
           <img
             className="thermometer"
-            src={`${import.meta.env.BASE_URL}icons/thermometer.svg`}
+            src={thermometer}
             alt="Thermometer"
-          /
-          <img className="refresh" onClick={fetchWeather} src={`${import.meta.env.BASE_URL}icons/refresh.svg`} alt="Refresh" />
+          />
+          <img className="refresh" onClick={fetchWeather} src={refresh} alt="Refresh" />
         </div>
       </div>
 
