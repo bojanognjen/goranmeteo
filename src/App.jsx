@@ -3,6 +3,7 @@ import Clock24 from "./Clock";
 import Day from "./Day";
 import { useEffect, useState } from "react";
 import Current from "./Current";
+import partlyCloudyIcon from './assets/icons/partly-cloudy-day.svg';
 
 function App() {
   const [time, setTime] = useState(new Date());
@@ -70,7 +71,6 @@ function App() {
   }, [weatherData]);
 
   let temperature = Math.round(weatherData?.current?.temperature_2m);
-  let tempUnit = weatherData?.current_units?.temperature_2m;
 
   let currentCondition = weatherData?.current.weather_code;
 
@@ -89,7 +89,7 @@ function App() {
         <h1>GoranMeteo</h1>
         <img
           className="logo"
-          src="./src/assets/icons/partly-cloudy-day.svg"
+          src={partlyCloudyIcon}
           alt="Main logo"
         />
       </div>
