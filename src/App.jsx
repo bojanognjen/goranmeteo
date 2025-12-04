@@ -89,7 +89,7 @@ function App() {
         <h1>GoranMeteo</h1>
         <img
           className="logo"
-          src="./src/assets/icons/partly-cloudy-day.svg"
+          src="/assets/icons/partly-cloudy-day.svg"
           alt="Main logo"
         />
       </div>
@@ -108,7 +108,7 @@ function App() {
             src="./src/assets/icons/thermometer.svg"
             alt="Thermometer"
           />
-          <img className="refresh" onClick={fetchWeather} src="src/assets/icons/refresh.svg" alt="Refresh" />
+          <img className="refresh" onClick={fetchWeather} src="/assets/icons/refresh.svg" alt="Refresh" />
         </div>
       </div>
 
@@ -118,7 +118,6 @@ function App() {
           unit="°"
           condition={currentCondition}
         />
-        <span className="weatherToday"></span>
       </div>
 
       <div className="followingDays">
