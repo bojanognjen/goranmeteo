@@ -1,15 +1,68 @@
 main {
     background:linear-gradient(to bottom, hsl(233deg 35% 31%), hsl(225deg 92% 9%));
     color: #fff;
+    border-radius: 2rem;
+    padding: 1rem;
+}
+
+
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.logo {
+    width: 3rem;
+    height: 3rem;
+}
+
+.heading {
+    display: flex;
+    flex-grow: 1;
+}
+
+.icons {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.thermometer {
+    width: 3.2rem;
+    height: 3.2rem;
+}
+
+.refresh {
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+}
+
+.locationTitle {
+    font-size: 1.8rem;
+}
+
+.current {
+    display: flex;
+}
+
+.current .number {
+    font-size: 5rem;
 }
 
 .followingDays {
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
 }
 
 .day {
     border: 1px dashed darkblue;
+    display: flex;
 }
 
 .icon {

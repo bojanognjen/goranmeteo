@@ -55,5 +55,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 body {
-  background-color: #e3f6ff;
+  background-color: hsl(231deg, 100%, 10%);
+  font-family: 'Roboto', sans-serif;
+  min-height: 100dvh;
+  display: grid;
+  place-content: center;
 }

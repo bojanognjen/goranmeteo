@@ -9,15 +9,7 @@ function App() {
 
   let today = time.getDay();
   if (today == 0) today = 7;
-  const daysInWeek = [
-    "Ponedeljak",
-    "Utorak",
-    "Srijeda",
-    "Četvrtak",
-    "Petak",
-    "Subota",
-    "Nedelja",
-  ];
+  const daysInWeek = ["Pon", "Uto", "Sri", "Čet", "Pet", "Sub", "Ned"];
   const months = [
     "januar",
     "februar",
@@ -43,8 +35,8 @@ function App() {
   const latitude = 44.73;
   const longitude = 18.08;
 
-  useEffect(() => {
-    async function fetchWeather(lat, lon) {
+
+    const fetchWeather= async (lat, lon) => {
       try {
         const url = `https://api.open-meteo.com/v1/forecast?latitude=44.73&longitude=18.08&daily=temperature_2m_max,temperature_2m_min,weather_code&hourly=temperature_2m,rain,cloud_cover_mid,cloud_cover,snowfall&current=temperature_2m,is_day,rain,snowfall,cloud_cover,weather_code&timezone=Europe%2FBerlin`;
 
@@ -68,6 +60,8 @@ function App() {
         return null; // or handle error in a way your app needs
       }
     }
+
+  useEffect(()=> {
     fetchWeather(latitude, longitude);
   }, []);
 
@@ -80,7 +74,10 @@ function App() {
 
   let currentCondition = weatherData?.current.weather_code;
 
-  let rotatedWeek = [...daysInWeek.slice(today), ...daysInWeek.slice(0, today - 1)];
+  let rotatedWeek = [
+    ...daysInWeek.slice(today),
+    ...daysInWeek.slice(0, today - 1),
+  ];
   let maxTemps = weatherData?.daily?.temperature_2m_max;
   let minTemps = weatherData?.daily?.temperature_2m_min;
   let weatherCodes = weatherData?.daily?.weather_code;
@@ -88,17 +85,31 @@ function App() {
 
   return (
     <main>
-      <h1 className="title">GoranMeteo</h1>
+      <div className="title">
+        <h1>GoranMeteo</h1>
+        <img
+          className="logo"
+          src="src/assets/icons/partly-cloudy-day.svg"
+          alt="Main logo"
+        />
+      </div>
 
       <div className="heading">
         <div className="location">
           <h2 className="locationTitle">Doboj</h2>
-          <img className="icon" src="src/assets/icons/thermometer.svg" alt="Thermometer" />
+          <p className="time">
+            {weekDayName}, {date}. {monthName}, {hours}:{minutes}h
+            <Clock24 setTime={setTime} />
+          </p>
         </div>
-        <p className="time">
-          {weekDayName}, {date}. {monthName}, {hours}:{minutes}h
-        </p>
-        <Clock24 setTime={setTime} />
+        <div className="icons">
+          <img
+            className="thermometer"
+            src="src/assets/icons/thermometer.svg"
+            alt="Thermometer"
+          />
+          <img className="refresh" onClick={fetchWeather} src="src/assets/icons/refresh.svg" alt="Refresh" />
+        </div>
       </div>
 
       <div className="todayForecast">
@@ -111,8 +122,18 @@ function App() {
       </div>
 
       <div className="followingDays">
-        {rotatedWeek.map((day, index)=> {
-          if (weatherData) return <Day key={index} day={day} condition={weatherCodes[index + 1]} maxTemp={maxTemps[index + 1]} minTemp={minTemps[index + 1]} unit={units}/>
+        {rotatedWeek.map((day, index) => {
+          if (weatherData)
+            return (
+              <Day
+                key={index}
+                day={day}
+                condition={weatherCodes[index + 1]}
+                maxTemp={maxTemps[index + 1]}
+                minTemp={minTemps[index + 1]}
+                unit={units}
+              />
+            );
         })}
       </div>
     </main>
