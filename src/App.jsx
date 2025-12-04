@@ -89,7 +89,7 @@ function App() {
         <h1>GoranMeteo</h1>
         <img
           className="logo"
-          src={partlyCloudyIcon}
+          src="./src/assets/icons/partly-cloudy-day.svg"
           alt="Main logo"
         />
       </div>
@@ -102,7 +102,7 @@ function App() {
             <Clock24 setTime={setTime} />
           </p>
         </div>
-        <div className="icons">
+        <div className="upper-icons">
           <img
             className="thermometer"
             src="./src/assets/icons/thermometer.svg"
