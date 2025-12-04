@@ -4,6 +4,7 @@ import Day from "./Day";
 import { useEffect, useState } from "react";
 import Current from "./Current";
 import partlyCloudyIcon from './assets/icons/partly-cloudy-day.svg';
+import WeatherIcon from "./WeatherIcon";
 
 function App() {
   const [time, setTime] = useState(new Date());
@@ -87,6 +88,7 @@ function App() {
     <main>
       <div className="title">
         <h1>GoranMeteo</h1>
+        <WeatherIcon className="logo" condition={2}/>
         <img
           className="logo"
           src="/assets/icons/partly-cloudy-day.svg"
@@ -103,12 +105,8 @@ function App() {
           </p>
         </div>
         <div className="upper-icons">
-          <img
-            className="thermometer"
-            src="./src/assets/icons/thermometer.svg"
-            alt="Thermometer"
-          />
-          <img className="refresh" onClick={fetchWeather} src="/assets/icons/refresh.svg" alt="Refresh" />
+          <WeatherIcon className="thermometer" condition={100}/>
+          <WeatherIcon className="refresh" onClick={fetchWeather} condition={101} />
         </div>
       </div>
 
