@@ -88,5 +88,5 @@ export const wmoCodes = {
     icon: "thunderstorm-heavy-hail",
     en: "Heavy thunderstorm with hail",
     sr: "Jaka grmljavina sa gradom"
-  },
+  }
 };
