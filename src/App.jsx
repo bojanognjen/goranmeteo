@@ -89,7 +89,7 @@ function App() {
         <h1>GoranMeteo</h1>
         <img
           className="logo"
-          src="src/assets/icons/partly-cloudy-day.svg"
+          src="./src/assets/icons/partly-cloudy-day.svg"
           alt="Main logo"
         />
       </div>
@@ -105,7 +105,7 @@ function App() {
         <div className="icons">
           <img
             className="thermometer"
-            src="src/assets/icons/thermometer.svg"
+            src="./src/assets/icons/thermometer.svg"
             alt="Thermometer"
           />
           <img className="refresh" onClick={fetchWeather} src="src/assets/icons/refresh.svg" alt="Refresh" />

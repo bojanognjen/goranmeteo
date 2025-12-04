@@ -5,7 +5,7 @@ export default function WeatherIcon({ className,code }) {
 
   return (
     <>
-      <img className={className} src={`src/assets/icons/${iconName}.svg`} alt={iconName == "not-available" ? `not-available ${code}` : iconName} />
+      <img className={className} src={`./src/assets/icons/${iconName}.svg`} alt={iconName == "not-available" ? `not-available ${code}` : iconName} />
     </>
   );
 }
