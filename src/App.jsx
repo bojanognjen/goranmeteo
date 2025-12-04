@@ -3,7 +3,6 @@ import Clock24 from "./Clock";
 import Day from "./Day";
 import { useEffect, useState } from "react";
 import Current from "./Current";
-import partlyCloudyIcon from './assets/icons/partly-cloudy-day.svg';
 
 function App() {
   const [time, setTime] = useState(new Date());
@@ -89,7 +88,7 @@ function App() {
         <h1>GoranMeteo</h1>
         <img
           className="logo"
-          src="./src/assets/icons/partly-cloudy-day.svg"
+          src="../public/partly-cloudy-day.svg"
           alt="Main logo"
         />
       </div>
@@ -105,10 +104,10 @@ function App() {
         <div className="upper-icons">
           <img
             className="thermometer"
-            src="./src/assets/icons/thermometer.svg"
+            src="../public/thermometer.svg"
             alt="Thermometer"
           />
-          <img className="refresh" onClick={fetchWeather} src="./src/assets/icons/refresh.svg" alt="Refresh" />
+          <img className="refresh" onClick={fetchWeather} src="../public/refresh.svg" alt="Refresh" />
         </div>
       </div>
 
