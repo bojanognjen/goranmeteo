@@ -115,7 +115,7 @@ function App() {
       <div className="todayForecast">
         <Current
           currentTemperature={temperature}
-          unit={tempUnit}
+          unit="°"
           condition={currentCondition}
         />
         <span className="weatherToday"></span>
@@ -129,8 +129,8 @@ function App() {
                 key={index}
                 day={day}
                 condition={weatherCodes[index + 1]}
-                maxTemp={maxTemps[index + 1]}
-                minTemp={minTemps[index + 1]}
+                maxTemp={Math.round(maxTemps[index + 1])}
+                minTemp={Math.round(minTemps[index + 1])}
                 unit={units}
               />
             );

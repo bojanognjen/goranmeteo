@@ -32,17 +32,17 @@ export const wmoCodes = {
   51: {
     icon: "drizzle",
     en: "Light drizzle",
-    sr: "Slaba rominjajuća kiša"
+    sr: "Rominjajuća kiša"
   },
   53: {
     icon: "drizzle",
     en: "Moderate drizzle",
-    sr: "Umjerena rominjajuća kiša"
+    sr: "Rominjajuća kiša"
   },
   55: {
     icon: "drizzle",
     en: "Dense drizzle",
-    sr: "Gusta rominjajuća kiša"
+    sr: "Rominjajuća kiša"
   },
   61: {
     icon: "rain",

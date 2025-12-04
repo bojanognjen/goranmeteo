@@ -1,71 +1,135 @@
 main {
-    background:linear-gradient(to bottom, hsl(233deg 35% 31%), hsl(225deg 92% 9%));
-    color: #fff;
-    border-radius: 2rem;
-    padding: 1rem;
+  background: linear-gradient(
+    to bottom,
+    hsl(233deg 35% 31%),
+    hsl(225deg 92% 9%)
+  );
+  color: #fff;
+  border-radius: 2rem;
+  padding: 1rem;
 }
 
-
-
 .title {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .logo {
-    width: 3rem;
-    height: 3rem;
+  width: 3rem;
+  height: 3rem;
 }
 
 .heading {
-    display: flex;
-    flex-grow: 1;
+  display: flex;
+  flex-grow: 1;
 }
 
 .icons {
-    display: flex;
-    flex-grow: 1;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
 }
 
 .thermometer {
-    width: 3.2rem;
-    height: 3.2rem;
+  width: 3.2rem;
+  height: 3.2rem;
 }
 
 .refresh {
-    width: 2rem;
-    height: 2rem;
-    cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
 }
 
 .locationTitle {
-    font-size: 1.8rem;
+  font-size: 1.8rem;
 }
 
 .current {
-    display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr auto;
 }
 
 .current .number {
-    font-size: 5rem;
+  font-size: 5rem;
+  grid-row: 1/-1;
+  grid-column: 1/2;
+  align-self: center;
+  justify-self: center;
+}
+
+.weatherIcon {
+  grid-column: 2/3;
+  grid-row: 1/2;
+  width: 7rem;
+  height: 7rem;
+  justify-self: center;
+}
+
+.current p {
+  grid-row: 2/3;
+  grid-column: 2/3;
+  justify-self: center;
 }
 
 .followingDays {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+  margin-top: 2rem;
+  border-radius: 2rem;
+  background: linear-gradient(
+    to bottom,
+    hsl(233deg 35% 31%),
+    hsl(225deg 92% 9%)
+  );
+  padding: 1rem;
+  display: flex;
+  gap: 0.4rem;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .day {
-    border: 1px dashed darkblue;
-    display: flex;
+  border: 2px solid transparent;
+  background: linear-gradient(
+        hsl(233deg, 39%, 32%),
+        hsl(233deg, 39%, 10%)
+      )
+      padding-box,
+    linear-gradient(to right, hsl(233deg, 31%, 44%), hsl(230deg, 60%, 22%))
+      border-box;
+  border-radius: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 0.5rem;
 }
 
 .icon {
-    width: 60px;
-    height: 60px;
+  width: 3.8rem;
+  height: 3.8rem;
+  justify-self: center;
+}
+
+.day > * {
+  align-self: center;
+}
+
+.tempBlock {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+}
+
+.dayOfWeek {
+  justify-self: center;
+}
+
+.maxTemp {
+  font-size: 1.5rem;
+}
+
+.minTemp {
+  opacity: 0.3;
 }
