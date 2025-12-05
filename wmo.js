@@ -5,7 +5,7 @@ export const wmoCodes = {
     sr: "Vedro"
   },
   1: {
-    icon: "mainly-clear",
+    icon: "clear-day",
     en: "Mainly clear",
     sr: "Uglavnom vedro"
   },
