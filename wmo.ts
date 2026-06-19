@@ -1,4 +1,4 @@
-export const wmoCodes = {
+export const wmoCodes: Record<number, { icon: string; en: string; sr: string }> = {
   0: {
     icon: "clear-day",
     en: "Clear sky",
@@ -75,7 +75,7 @@ export const wmoCodes = {
     sr: "Jaka snježna padavina"
   },
   95: {
-    icon: "thunderstorm",
+    icon: "thunderstorms",
     en: "Thunderstorm",
     sr: "Grmljavina"
   },
